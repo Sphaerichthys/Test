@@ -37,9 +37,10 @@ namespace Lib
                     _list[i].IsRunning = true;
                 }
 
-                _list[i].Task.Invoke();
-
-                lock (_locker)
+                try{
+                    _list[i].Task.Invoke();
+                }
+                finally
                 {
                     _list[i].IsRunning = false;
                 }
